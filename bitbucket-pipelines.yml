@@ -1,0 +1,228 @@
+image: accordo/serverless:node8
+
+pipelines:
+  pull-requests:
+    '**':
+      - step:
+          name: PR build
+          caches:
+            - node
+            - sonarcloud
+            - node-scanner
+          script:
+            - npm ci
+            - npm run audit:check
+            - npm run lint
+            - npm run test:unit:coverage
+            - npm run test:unit:report
+            - npm run test:component:report
+            - npm install -g sonarqube-scanner
+            - sonar-scanner -Dsonar.login=$SONARCLOUD_TOKEN -Dsonar.projectVersion=$BITBUCKET_BUILD_NUMBER
+  branches:
+    master:
+      - step:
+          name: Lint, Coverage, Unit Test, Component Test
+          caches:
+            - node
+            - sonarcloud
+            - node-scanner
+          script:
+            - npm ci
+            - npm run audit:check
+            - npm run lint
+            - npm run test:unit:coverage
+            - npm run test:unit:report
+            - npm run test:component:report
+            - npm install -g sonarqube-scanner
+            - sonar-scanner -Dsonar.login=$SONARCLOUD_TOKEN -Dsonar.projectVersion=$BITBUCKET_BUILD_NUMBER
+      - step:
+          name: Deploy master to dev & run healthcheck
+          deployment: test-api
+          caches:
+            - node
+          script:
+            - npm ci
+            - bash ./scripts/deploy.sh dev
+            - bash ./scripts/healthCheck.sh dev
+      - step:
+          name: Run smoke test on dev
+          caches:
+            - node
+          script:
+            - npm ci
+            - npm run test:smoke dev
+      - step:
+          name: Deploy master to uat & run healthcheck
+          deployment: staging-api
+          trigger: manual
+          caches:
+            - node
+          script:
+            - npm ci
+            - bash ./scripts/deploy.sh uat
+            - bash ./scripts/healthCheck.sh uat
+      - step:
+          name: Run smoke test on uat
+          caches:
+            - node
+          script:
+            - npm ci
+            - npm run test:smoke uat
+      - step:
+          name: Deploy master to prod
+          deployment: production-api
+          trigger: manual
+          caches:
+            - node
+          script:
+            - npm ci
+            - bash ./scripts/deploy.sh prod
+      - step:
+          name: Run smoke test on prod
+          caches:
+            - node
+          script:
+            - npm ci
+            - npm run test:smoke prod
+
+  custom:
+    deploy-to-dev:
+      - step:
+          name: Deploy feature branch to dev
+          caches:
+            - node
+          script:
+            - npm ci
+            - npm run audit:check
+            - npm run lint
+            - npm run test:unit:coverage
+            - npm run test:unit:report
+            - npm run test:component:report
+            - bash ./scripts/deploy.sh dev
+    deploy-index-to-dev:
+      - variables:
+          - name: index
+          - name: version
+      - step:
+          name: Deploy index to dev
+          caches:
+            - node
+          script:
+            - npm ci
+            - npm run audit:check
+            - npm run lint
+            - npm run test:unit:coverage
+            - npm run test:unit:report
+            - npm run test:component:report
+            - bash ./scripts/deploy-index/deploy-index.sh dev $index $version
+    deploy-index-to-uat:
+      - variables:
+          - name: index
+          - name: version
+      - step:
+          name: Deploy index to uat
+          caches:
+            - node
+          script:
+            - npm ci
+            - npm run audit:check
+            - npm run lint
+            - npm run test:unit:coverage
+            - npm run test:unit:report
+            - npm run test:component:report
+            - bash ./scripts/deploy-index/deploy-index.sh uat $index $version
+    deploy-index-to-prod:
+      - variables:
+          - name: index
+          - name: version
+      - step:
+          name: Deploy indices to prod
+          caches:
+            - node
+          script:
+            - npm ci
+            - npm run audit:check
+            - npm run lint
+            - npm run test:unit:coverage
+            - npm run test:unit:report
+            - npm run test:component:report
+            - bash ./scripts/deploy-index/deploy-index.sh prod $index $version
+    run-health-check-dev:
+      - step:
+          name: Run health check on dev
+          caches:
+            - node
+          script:
+            - npm ci
+            - bash ./scripts/healthCheck.sh dev
+    run-health-check-uat:
+      - step:
+          name: Run health check on uat
+          caches:
+            - node
+          script:
+            - npm ci
+            - bash ./scripts/healthCheck.sh uat
+
+    run-smoke-dev:
+      - step:
+          name: Run smoke test on DEV
+          caches:
+            - node
+          script:
+            - npm ci
+            - npm run test:smoke dev
+    run-smoke-uat:
+      - step:
+          name: Run smoke test on UAT
+          caches:
+            - node
+          script:
+            - npm ci
+            - npm run test:smoke uat
+    run-smoke-prod:
+      - step:
+          name: Run smoke test on production
+          caches:
+            - node
+          script:
+            - npm ci
+            - npm run test:smoke prod
+    deploy-sqs-queue:
+      - step:
+          name: Audit check
+          caches:
+            - node
+          script:
+            - npm ci
+            - npm run audit:check
+      - step:
+          name: Deploy SQS to dev
+          deployment: test-sqs
+          caches:
+            - node
+          script:
+            - npm ci
+            - bash ./scripts/deployQueue.sh dev
+      - step:
+          name: Deploy SQS to uat
+          deployment: staging-sqs
+          trigger: manual
+          caches:
+            - node
+          script:
+            - npm ci
+            - bash ./scripts/deployQueue.sh uat
+      - step:
+          name: Deploy SQS to prod
+          deployment: production-sqs
+          trigger: manual
+          caches:
+            - node
+          script:
+            - npm ci
+            - bash ./scripts/deployQueue.sh prod
+definitions:
+  caches:
+    sonarcloud: ~/.sonar/cache
+    node-scanner: ~/.sonar/native-sonar-scanner

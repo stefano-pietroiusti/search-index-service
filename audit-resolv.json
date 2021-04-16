@@ -1,0 +1,266 @@
+{
+  "1065|request-promise-native>request-promise-core>lodash": {
+    "ignore": 1
+  },
+  "1065|cucumber>lodash": {
+    "ignore": 1
+  },
+  "1065|cucumber-html-reporter>lodash": {
+    "ignore": 1
+  },
+  "1065|cheerio>lodash": {
+    "ignore": 1
+  },
+  "1065|eslint>inquirer>lodash": {
+    "ignore": 1
+  },
+  "1065|eslint>lodash": {
+    "ignore": 1
+  },
+  "1065|eslint>table>lodash": {
+    "ignore": 1
+  },
+  "1065|eslint-plugin-cucumber>lodash": {
+    "ignore": 1
+  },
+  "1065|eslint-plugin-import>lodash": {
+    "ignore": 1
+  },
+  "1065|lint-staged>lodash": {
+    "ignore": 1
+  },
+  "1065|lint-staged>yup>lodash": {
+    "ignore": 1
+  },
+  "1065|mocha>yargs-unparser>lodash": {
+    "ignore": 1
+  },
+  "1065|nyc>istanbul-lib-instrument>@babel/generator>@babel/types>lodash": {
+    "ignore": 1
+  },
+  "1065|nyc>istanbul-lib-instrument>@babel/generator>lodash": {
+    "ignore": 1
+  },
+  "1065|nyc>istanbul-lib-instrument>@babel/template>@babel/types>lodash": {
+    "ignore": 1
+  },
+  "1065|nyc>istanbul-lib-instrument>@babel/traverse>@babel/generator>@babel/types>lodash": {
+    "ignore": 1
+  },
+  "1065|nyc>istanbul-lib-instrument>@babel/traverse>@babel/generator>lodash": {
+    "ignore": 1
+  },
+  "1065|nyc>istanbul-lib-instrument>@babel/traverse>@babel/helper-function-name>@babel/helper-get-function-arity>@babel/types>lodash": {
+    "ignore": 1
+  },
+  "1065|nyc>istanbul-lib-instrument>@babel/traverse>@babel/helper-function-name>@babel/template>@babel/types>lodash": {
+    "ignore": 1
+  },
+  "1065|nyc>istanbul-lib-instrument>@babel/traverse>@babel/helper-function-name>@babel/types>lodash": {
+    "ignore": 1
+  },
+  "1065|nyc>istanbul-lib-instrument>@babel/traverse>@babel/helper-split-export-declaration>@babel/types>lodash": {
+    "ignore": 1
+  },
+  "1065|nyc>istanbul-lib-instrument>@babel/traverse>@babel/types>lodash": {
+    "ignore": 1
+  },
+  "1065|nyc>istanbul-lib-instrument>@babel/traverse>lodash": {
+    "ignore": 1
+  },
+  "1065|nyc>istanbul-lib-instrument>@babel/types>lodash": {
+    "ignore": 1
+  },
+  "1065|prettier-eslint-cli>eslint>inquirer>lodash": {
+    "ignore": 1
+  },
+  "1065|prettier-eslint-cli>eslint>lodash": {
+    "ignore": 1
+  },
+  "1065|prettier-eslint-cli>eslint>table>lodash": {
+    "ignore": 1
+  },
+  "1065|prettier-eslint-cli>prettier-eslint>eslint>inquirer>lodash": {
+    "ignore": 1
+  },
+  "1065|prettier-eslint-cli>prettier-eslint>eslint>lodash": {
+    "ignore": 1
+  },
+  "1065|prettier-eslint-cli>prettier-eslint>eslint>table>lodash": {
+    "ignore": 1
+  },
+  "1065|prettier-eslint-cli>prettier-eslint>vue-eslint-parser>lodash": {
+    "ignore": 1
+  },
+  "1065|serverless>@serverless/enterprise-plugin>@serverless/event-mocks>lodash": {
+    "ignore": 1
+  },
+  "1065|serverless>@serverless/enterprise-plugin>lodash": {
+    "ignore": 1
+  },
+  "1065|serverless>archiver>archiver-utils>lodash": {
+    "ignore": 1
+  },
+  "1065|serverless>archiver>async>lodash": {
+    "ignore": 1
+  },
+  "1065|serverless>archiver>lodash": {
+    "ignore": 1
+  },
+  "1065|serverless>archiver>zip-stream>archiver-utils>lodash": {
+    "ignore": 1
+  },
+  "1065|serverless>archiver>zip-stream>lodash": {
+    "ignore": 1
+  },
+  "1065|serverless>json-refs>graphlib>lodash": {
+    "ignore": 1
+  },
+  "1065|serverless>lodash": {
+    "ignore": 1
+  },
+  "1065|serverless>tabtab>inquirer>lodash": {
+    "ignore": 1
+  },
+  "1065|sinon>@sinonjs/formatio>@sinonjs/samsam>lodash": {
+    "ignore": 1
+  },
+  "1065|sinon>@sinonjs/samsam>lodash": {
+    "ignore": 1
+  },
+  "1065|sinon>nise>@sinonjs/formatio>@sinonjs/samsam>lodash": {
+    "ignore": 1
+  },
+  "1065|00unidentified>@azure/ms-rest-nodeauth>adal-node>async>lodash": {
+    "ignore": 1
+  },
+  "1065|00unidentified>@azure/service-bus>@azure/amqp-common>@azure/ms-rest-nodeauth>adal-node>async>lodash": {
+    "ignore": 1
+  },
+  "1065|00unidentified>@azure/service-bus>@azure/ms-rest-nodeauth>adal-node>async>lodash": {
+    "ignore": 1
+  },
+  "1065|00unidentified>mssql>tedious>adal-node>async>lodash": {
+    "ignore": 1
+  },
+  "1065|00unidentified>request-promise-native>request-promise-core>lodash": {
+    "ignore": 1
+  },
+  "1065|00unidentified>aws-sdk>xml2js>xmlbuilder>lodash": {
+    "ignore": 1
+  },
+  "1065|00unidentified>aws-sdk>xmlbuilder>lodash": {
+    "ignore": 1
+  },
+  "1012|lint-staged>micromatch>braces>snapdragon>base>cache-base>set-value": {
+    "ignore": 1
+  },
+  "1012|lint-staged>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>set-value": {
+    "ignore": 1
+  },
+  "1012|lint-staged>micromatch>extglob>snapdragon>base>cache-base>set-value": {
+    "ignore": 1
+  },
+  "1012|lint-staged>micromatch>nanomatch>snapdragon>base>cache-base>set-value": {
+    "ignore": 1
+  },
+  "1012|lint-staged>micromatch>snapdragon>base>cache-base>set-value": {
+    "ignore": 1
+  },
+  "1012|serverless>nanomatch>snapdragon>base>cache-base>set-value": {
+    "ignore": 1
+  },
+  "1012|serverless-plugin-include-dependencies>micromatch>braces>snapdragon>base>cache-base>set-value": {
+    "ignore": 1
+  },
+  "1012|serverless-plugin-include-dependencies>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>set-value": {
+    "ignore": 1
+  },
+  "1012|serverless-plugin-include-dependencies>micromatch>extglob>snapdragon>base>cache-base>set-value": {
+    "ignore": 1
+  },
+  "1012|serverless-plugin-include-dependencies>micromatch>nanomatch>snapdragon>base>cache-base>set-value": {
+    "ignore": 1
+  },
+  "1012|serverless-plugin-include-dependencies>micromatch>snapdragon>base>cache-base>set-value": {
+    "ignore": 1
+  },
+  "1012|lint-staged>micromatch>braces>snapdragon>base>cache-base>union-value>set-value": {
+    "ignore": 1
+  },
+  "1012|lint-staged>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>union-value>set-value": {
+    "ignore": 1
+  },
+  "1012|lint-staged>micromatch>extglob>snapdragon>base>cache-base>union-value>set-value": {
+    "ignore": 1
+  },
+  "1012|lint-staged>micromatch>nanomatch>snapdragon>base>cache-base>union-value>set-value": {
+    "ignore": 1
+  },
+  "1012|lint-staged>micromatch>snapdragon>base>cache-base>union-value>set-value": {
+    "ignore": 1
+  },
+  "1012|serverless>nanomatch>snapdragon>base>cache-base>union-value>set-value": {
+    "ignore": 1
+  },
+  "1012|serverless-plugin-include-dependencies>micromatch>braces>snapdragon>base>cache-base>union-value>set-value": {
+    "ignore": 1
+  },
+  "1012|serverless-plugin-include-dependencies>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>union-value>set-value": {
+    "ignore": 1
+  },
+  "1012|serverless-plugin-include-dependencies>micromatch>extglob>snapdragon>base>cache-base>union-value>set-value": {
+    "ignore": 1
+  },
+  "1012|serverless-plugin-include-dependencies>micromatch>nanomatch>snapdragon>base>cache-base>union-value>set-value": {
+    "ignore": 1
+  },
+  "1012|serverless-plugin-include-dependencies>micromatch>snapdragon>base>cache-base>union-value>set-value": {
+    "ignore": 1
+  },
+  "1013|lint-staged>micromatch>braces>snapdragon>base>mixin-deep": {
+    "ignore": 1
+  },
+  "1013|lint-staged>micromatch>extglob>expand-brackets>snapdragon>base>mixin-deep": {
+    "ignore": 1
+  },
+  "1013|lint-staged>micromatch>extglob>snapdragon>base>mixin-deep": {
+    "ignore": 1
+  },
+  "1013|lint-staged>micromatch>nanomatch>snapdragon>base>mixin-deep": {
+    "ignore": 1
+  },
+  "1013|lint-staged>micromatch>snapdragon>base>mixin-deep": {
+    "ignore": 1
+  },
+  "1013|serverless>nanomatch>snapdragon>base>mixin-deep": {
+    "ignore": 1
+  },
+  "1013|serverless-plugin-include-dependencies>micromatch>braces>snapdragon>base>mixin-deep": {
+    "ignore": 1
+  },
+  "1013|serverless-plugin-include-dependencies>micromatch>extglob>expand-brackets>snapdragon>base>mixin-deep": {
+    "ignore": 1
+  },
+  "1013|serverless-plugin-include-dependencies>micromatch>extglob>snapdragon>base>mixin-deep": {
+    "ignore": 1
+  },
+  "1013|serverless-plugin-include-dependencies>micromatch>nanomatch>snapdragon>base>mixin-deep": {
+    "ignore": 1
+  },
+  "1013|serverless-plugin-include-dependencies>micromatch>snapdragon>base>mixin-deep": {
+    "ignore": 1
+  },
+  "1066|prettier-eslint-cli>prettier-eslint>lodash.merge": {
+    "ignore": 1
+  },
+  "880|00unidentified>analytics-node>axios": {
+    "ignore": 1
+  },
+  "1065|00unidentified>00unidentified>aws-sdk>xml2js>xmlbuilder>lodash": {
+    "ignore": 1
+  },
+  "1065|00unidentified>00unidentified>aws-sdk>xmlbuilder>lodash": {
+    "ignore": 1
+  }
+}

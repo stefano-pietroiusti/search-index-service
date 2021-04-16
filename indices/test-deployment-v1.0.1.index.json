@@ -1,0 +1,13 @@
+{
+  "mappings": {
+    "_meta": {
+      "version": "1.0.1"
+    },
+    "properties": {
+      "b": {
+        "type": "alias",
+        "path": "a"
+      }
+    }
+  }
+}

@@ -1,0 +1,107 @@
+swagger: '2.0'
+info:
+  version: 2019-06-18T00:00:00Z
+  title: Search Index Service
+host: api.accordo.io
+basePath: /search-index
+schemes:
+  - https
+paths:
+  /health:
+    get:
+      tags:
+        - Operation
+      description: |
+        - Checks if the service and all major dependencies are up/warning
+      produces:
+        - application/json
+      security:
+        - accordo-authorizer: []
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+          description: Authorization bearer {healthcheck_JWT_token}
+      responses:
+        200:
+          description: 200 Response
+          schema:
+            $ref: '#/definitions/healthIndicatorUP'
+definitions:
+  BadRequestError:
+      type: "object"
+      properties:
+          statusCode:
+              type: "number"
+              example: 400
+          body:
+              type: object
+              example: {
+                      "message" : "validation error"
+                    }
+  ForbiddenRequestError:
+      type: "object"
+      properties:
+          statusCode:
+              type: "number"
+              example: 403
+          body:
+              type: object
+              example: {
+                      "message" : "validation error"
+                    }
+  healthIndicatorUP:
+      type: "object"
+      properties:
+        service:
+          type: string
+          description: The service being health Checked
+          example: Search Index Service
+        status:
+          type: string
+          enum:
+            - UP
+            - WARNING
+            - DONW
+          example: UP
+        details:
+          type: array
+          description: Any Health Indicators included
+          items:
+            type: object
+            properties:
+              service:
+                type: string
+                description: The indicator for health checking
+                example: Elastic Search Index
+              status:
+                type: string
+                enum:
+                  - UP
+                  - WARNING
+                  - DONW
+                example: UP
+              details:
+                type: object
+                description: Include details for the indicator
+                properties:
+                  params:
+                    type: object
+                    description: The configuration for execute the indicator
+                  requestTime:
+                    type: number
+                    description: The running time for the indicator
+                  error:
+                    type: object
+                    description: The error that captured in the indicator
+securityDefinitions:
+  accordo-authorizer:
+    type: apiKey
+    name: Authorization
+    in: header
+    x-amazon-apigateway-authtype: custom
+  iam_authorizer:
+    type: apiKey
+    name: Authorization
+    in: header

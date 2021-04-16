@@ -1,0 +1,14 @@
+[
+  "stage",
+  "esClientCloudId",
+  "esClientUsername",
+  "esClientPassword",
+  "esMaxRetries",
+  "esRequestTimeout",
+  "cosmosUri",
+  "cosmosKey",
+  "cosmosDb",
+  "awsRegion",
+  "esIntegrationTestDeploymentUsername",
+  "esIntegrationTestDeploymenyPassword"
+]

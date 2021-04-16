@@ -1,0 +1,15 @@
+{
+  "settings": {
+    "number_of_shards": 3
+  },
+  "mappings": {
+    "_meta": {
+      "version": "1.0.0"
+    },
+    "properties": {
+      "a": {
+        "type": "keyword"
+      }
+    }
+  }
+}

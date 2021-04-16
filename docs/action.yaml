@@ -1,0 +1,291 @@
+swagger: '2.0'
+info:
+  version: 2019-06-18T00:00:00Z
+  title: Search Index Service
+host: api.accordo.io
+basePath: /search-index
+schemes:
+  - https
+paths:
+  /PARTNER_CLIENT_ORGANIZATION_UPSERT:
+    post:
+      summary: 'Updates office365 consumption in {stage}-partner-client-organization index by action'
+      parameters:
+        - name: body
+          description: 'payload required for elastic search processing'
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/partnerClientUpsertPayload'
+      responses:
+        200:
+          description: '200 OK'
+          schema:
+            $ref: '#/definitions/ActionSuccessResponse'
+        500:
+          description: 'Internal Server Error'
+          schema:
+            $ref: '#/definitions/ServerError'
+  /PARTNER_CLIENT_ORGANIZATION_DELETE:
+    post:
+      summary: 'Updates office365 consumption in {stage}-partner-client-organization index by action'
+      parameters:
+        - name: body
+          description: 'payload required for elastic search processing'
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/partnerClientDeletePayload'
+      responses:
+        200:
+          description: '200 OK'
+          schema:
+            $ref: '#/definitions/ActionSuccessResponse'
+        500:
+          description: 'Internal Server Error'
+          schema:
+            $ref: '#/definitions/ServerError'
+  /OFFICE365_CONSUMPTION_UPSERT:
+    post:
+      summary: 'Updates office365 consumption in {stage}-partner-client-organization index by action'
+      parameters:
+        - name: body
+          description: 'payload required for elastic search processing'
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/partnerClientUpsertPayload'
+      responses:
+        200:
+          description: '200 OK'
+          schema:
+            $ref: '#/definitions/ActionSuccessResponse'
+        500:
+          description: 'Internal Server Error'
+          schema:
+            $ref: '#/definitions/ServerError'
+  /OFFICE365_CONSUMPTION_DELETE:
+    post:
+      summary: 'Updates office365 consumption in {stage}-partner-client-organization index by action'
+      parameters:
+        - name: body
+          description: 'payload required for elastic search processing'
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/partnerClientDeletePayload'
+      responses:
+        200:
+          description: '200 OK'
+          schema:
+            $ref: '#/definitions/ActionSuccessResponse'
+        500:
+          description: 'Internal Server Error'
+          schema:
+            $ref: '#/definitions/ServerError'
+  /OFFICE365_BACKFILL_BATCH:
+    post:
+      summary: 'Action to select a batch of clients and call the back-filler action'
+      parameters:
+        - name: body
+          description: 'Just the action name'
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/BackfillSchedulerPayload'
+      responses:
+        200:
+          description: '200 OK'
+          schema:
+            $ref: '#/definitions/ActionSuccessResponse'
+        500:
+          description: 'Internal Server Error'
+          schema:
+            $ref: '#/definitions/ServerError'
+
+  /OFFICE365_CONSUMPTION_BACKFILL:
+    post:
+      summary: 'Action to back-fill the timeseries index for o365 consumption'
+      parameters:
+        - name: body
+          description: 'The mspId, clientId, processing time'
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/consumptionBackfillPayload'
+      responses:
+        200:
+          description: '200 OK'
+          schema:
+            $ref: '#/definitions/ActionSuccessResponse'
+        500:
+          description: 'Internal Server Error'
+          schema:
+            $ref: '#/definitions/ServerError'
+  /O365_SNAPSHOT_INDEX_UPSERT:
+    post:
+      summary: 'Updates the {stage}-office365-consumption-snapshot index by action'
+      parameters:
+        - name: body
+          description: 'payload required for elastic search processing'
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/o365SnapshotUpsertPayload'
+      responses:
+        200:
+          description: '200 OK'
+          schema:
+            $ref: '#/definitions/ActionSuccessResponse'
+        500:
+          description: 'Internal Server Error'
+          schema:
+            $ref: '#/definitions/ServerError'
+  /O365_SNAPSHOT_INDEX_DELETE:
+    post:
+      summary: 'Updates the {stage}-office365-consumption-snapshot index by action'
+      parameters:
+        - name: body
+          description: 'payload required for elastic search processing'
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/o365SnapshotDeletePayload'
+      responses:
+        200:
+          description: '200 OK'
+          schema:
+            $ref: '#/definitions/ActionSuccessResponse'
+        500:
+          description: 'Internal Server Error'
+          schema:
+            $ref: '#/definitions/ServerError'
+definitions:
+  partnerClientUpsertPayload:
+    type: object
+    properties:
+      action:
+        description: Elastic search action
+        example: PARTNER_CLIENT_ORGANIZATION_UPSERT|OFFICE365_CONSUMPTION_UPSERT
+        type: string
+      clientId:
+        description: Partner Client Organization ID
+        example: acc_b8210546-0536-4a27-a78d-8083c254ab4f
+        type: string
+  BackfillSchedulerPayload:
+    type: object
+    properties:
+      action:
+        description: Elastic search action
+        example: OFFICE365_BACKFILL_BATCH
+        type: string
+  consumptionBackfillPayload:
+    type: object
+    properties:
+      action:
+        description: Elastic search action
+        example: OFFICE365_CONSUMPTION_BACKFILL
+        type: string
+      clientId:
+        description: Partner Client Organization ID
+        example: acc_b8210546-0536-4a27-a78d-8083c254ab4f
+        type: string
+      partnerId:
+        description: Partner Organization ID
+        example: ac_58c7febc-3c5e-4945-a36c-10c07d5e3624
+        type: string
+      timestamp:
+        description: 'The timestamp the action is invoked'
+        example: '2019-06-18T03:15:21.015Z'
+        type: string
+  partnerClientDeletePayload:
+    type: object
+    properties:
+      action:
+        description: Elastic search action
+        example: PARTNER_CLIENT_ORGANIZATION_DELETE|OFFICE365_CONSUMPTION_DELETE
+        type: string
+      clientId:
+        description: Partner Client Organization ID
+        example: acc_b8210546-0536-4a27-a78d-8083c254ab4f
+        type: string
+      partnerId:
+        description: Partner Organization ID
+        example: ac_58c7febc-3c5e-4945-a36c-10c07d5e3624
+        type: string
+  o365SnapshotUpsertPayload:
+    type: object
+    properties:
+      action:
+        description: Elastic search action
+        example: O365_SNAPSHOT_INDEX_UPSERT
+        type: string
+      clientId:
+        description: Partner Client Organization ID
+        example: acc_b8210546-0536-4a27-a78d-8083c254ab4f
+        type: string
+      partnerId:
+        description: Partner Organization ID
+        example: ac_58c7febc-3c5e-4945-a36c-10c07d5e3624
+        type: string
+      lastProcessed:
+        description: 'Update action - Last processed date'
+        example: '2019-06-18T03:15:21.015Z'
+        type: string
+      dashboardViewPath:
+        description: 'Update action - dashboard view path'
+        example: 'prod/acc_00072f6b-0464-4fce-91bd-01a8a4dc32af/4912736e-c304-4683-b6dd-3e683bb6fe09-office365DashboardView.json'
+        type: string
+      recommendationsViewPath:
+        description: 'Update action - recommendations view path'
+        example: 'prod/acc_00072f6b-0464-4fce-91bd-01a8a4dc32af/4912736e-c304-4683-b6dd-3e683bb6fe09-office365RecommendationsView.json'
+        type: string
+      usersViewPath:
+        description: 'Update action - users view path'
+        example: 'prod/acc_00072f6b-0464-4fce-91bd-01a8a4dc32af/4912736e-c304-4683-b6dd-3e683bb6fe09-office365UsersView.json'
+        type: string
+  o365SnapshotDeletePayload:
+    type: object
+    properties:
+      action:
+        description: 'Elastic search action'
+        example: O365_SNAPSHOT_INDEX_DELETE
+        type: string
+      clientId:
+        description: 'Partner Client Organization ID'
+        example: 'acc_b8210546-0536-4a27-a78d-8083c254ab4f'
+        type: string
+      partnerId:
+        description: 'Partner Organization ID'
+        example: 'ac_58c7febc-3c5e-4945-a36c-10c07d5e3624'
+        type: string
+  ActionSuccessResponse:
+    type: object
+    properties:
+      statusCode:
+        type: number
+        example: 200
+      body:
+        type: object
+        example: { 'message': 'success message' }
+  ServerError:
+    properties:
+      statusCode:
+        type: number
+        example: 500
+      message:
+        type: string
+        example: Internal Server Error
+      code:
+        type: integer
+        example: 112233
+securityDefinitions:
+  api_key:
+    type: 'apiKey'
+    name: 'x-api-key'
+    in: 'header'
+    x-amazon-apigateway-authtype: 'custom'
+  iam_authorizer:
+    type: 'apiKey'
+    name: 'Authorization'
+    in: 'header'

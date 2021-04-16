@@ -1,0 +1,288 @@
+{
+  "settings": {
+    "number_of_shards": 3,
+    "number_of_replicas": 1
+  },
+  "mappings": {
+    "_meta": {
+      "version": "1.0.0"
+    },
+    "_routing": {
+      "required": true
+    },
+    "dynamic": "false",
+    "properties": {
+      "id": {
+        "type": "keyword"
+      },
+      "clientId": {
+        "type": "keyword"
+      },
+      "partnerId": {
+        "type": "keyword"
+      },
+      "reportDate": {
+        "type": "date"
+      },
+      "currency": {
+        "type": "keyword"
+      },
+      "totalActivePaidUsers": {
+        "type": "integer"
+      },
+      "totalUsers": {
+        "type": "integer"
+      },
+      "planHighlights": {
+        "properties": {
+          "purchased": {
+            "type": "integer"
+          },
+          "unassigned": {
+            "type": "integer"
+          },
+          "usersAssigned": {
+            "type": "integer"
+          },
+          "annualSpend": {
+            "type": "scaled_float",
+            "scaling_factor": 100
+          },
+          "opportunities": {
+            "type": "scaled_float",
+            "scaling_factor": 100
+          },
+          "totalPlans": {
+            "type": "integer"
+          }
+        }
+      },
+      "plans": {
+        "type": "nested",
+        "properties": {
+          "name": {
+            "type": "keyword"
+          },
+          "userMonthlyPrice": {
+            "type": "scaled_float",
+            "scaling_factor": 100
+          },
+          "monthlySpend": {
+            "type": "scaled_float",
+            "scaling_factor": 100
+          },
+          "annualSpend": {
+            "type": "scaled_float",
+            "scaling_factor": 100
+          },
+          "annualOpportunity": {
+            "type": "scaled_float",
+            "scaling_factor": 100
+          },
+          "purchased": {
+            "type": "integer"
+          },
+          "assigned": {
+            "type": "integer"
+          }
+        }
+      },
+      "oneDrive": {
+        "properties": {
+          "date": {
+            "type": "date"
+          },
+          "amount": {
+            "type": "long"
+          },
+          "usage": {
+            "properties": {
+              "date": {
+                "type": "date"
+              },
+              "amount": {
+                "type": "long"
+              }
+            }
+          },
+          "topUsers": {
+            "properties": {
+              "amount": {
+                "type": "long"
+              }
+            }
+          }
+        }
+      },
+      "recommendations": {
+        "properties": {
+          "totalAnnualOpportunities": {
+            "type": "scaled_float",
+            "scaling_factor": 100
+          },
+          "total": {
+            "type": "integer"
+          },
+          "totalEngagement": {
+            "type": "integer"
+          },
+          "totalConsultingRevenue": {
+            "type": "integer"
+          },
+          "totalMonthlyRevenue": {
+            "type": "integer"
+          },
+          "engagement": {
+            "properties": {
+              "lastUpdated": {
+                "type": "date"
+              },
+              "impact": {
+                "type": "keyword"
+              },
+              "resource": {
+                "type": "keyword"
+              },
+              "potentialAnnualSavings": {
+                "type": "scaled_float",
+                "scaling_factor": 100
+              },
+              "ratio": {
+                "type": "integer"
+              },
+              "recommendedActions": {
+                "properties": {
+                  "type": {
+                    "type": "keyword"
+                  },
+                  "variables": {
+                    "dynamic": true,
+                    "properties": {
+                      "subscription": {
+                        "type": "keyword"
+                      },
+                      "cost": {
+                        "type": "scaled_float",
+                        "scaling_factor": 100
+                      },
+                      "quantity": {
+                        "type": "long"
+                      }
+                    }
+                  }
+                }
+              },
+              "users": {
+                "properties": {
+                  "user": {
+                    "type": "keyword"
+                  },
+                  "reason": {
+                    "type": "keyword"
+                  },
+                  "potentialSavings": {
+                    "type": "scaled_float",
+                    "scaling_factor": 100
+                  },
+                  "currentPlan": {
+                    "type": "keyword"
+                  },
+                  "suggestedSwitch": {
+                    "type": "keyword"
+                  },
+                  "ratio": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          },
+          "consultingRevenue": {
+            "properties": {
+              "lastUpdated": {
+                "type": "date"
+              },
+              "impact": {
+                "type": "keyword"
+              },
+              "resource": {
+                "type": "keyword"
+              },
+              "recommendedActions": {
+                "properties": {
+                  "type": {
+                    "type": "keyword"
+                  },
+                  "variables": {
+                    "dynamic": true,
+                    "properties": {
+                      "subscription": {
+                        "type": "keyword"
+                      },
+                      "cost": {
+                        "type": "scaled_float",
+                        "scaling_factor": 100
+                      },
+                      "quantity": {
+                        "type": "long"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "monthlyRevenue": {
+            "properties": {
+              "lastUpdated": {
+                "type": "date"
+              },
+              "impact": {
+                "type": "keyword"
+              },
+              "resource": {
+                "type": "keyword"
+              },
+              "recommendedActions": {
+                "properties": {
+                  "type": {
+                    "type": "keyword"
+                  },
+                  "variables": {
+                    "dynamic": true,
+                    "properties": {
+                      "quantity": {
+                        "type": "float"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "users": {
+        "type": "nested",
+        "properties": {
+          "cost": {
+            "type": "scaled_float",
+            "scaling_factor": 100
+          },
+          "plan": {
+            "type": "keyword"
+          },
+          "department": {
+            "type": "keyword"
+          },
+          "storageUsed": {
+            "type": "long"
+          },
+          "lastActivity": {
+            "type": "date"
+          }
+        }
+      }
+    }
+  }
+}

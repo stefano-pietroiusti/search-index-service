@@ -1,0 +1,14 @@
+[
+  {
+    "version": "1.0.0",
+    "description": "Initial Create"
+  },
+  {
+    "version": "1.1.0",
+    "description": ["Changed the names of fields related to revenues"]
+  },
+  {
+    "version": "1.2.0",
+    "description": ["Added a new field 'partnerName'"]
+  }
+]

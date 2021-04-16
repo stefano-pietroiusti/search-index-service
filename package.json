@@ -1,0 +1,106 @@
+{
+  "name": "search-index-service",
+  "version": "1.0.0",
+  "description": "Search Index Service",
+  "main": "src/index.js",
+  "scripts": {
+    "audit:check": "check-audit",
+    "audit:resolve": "resolve-audit --ignoreLow",
+    "lint": "eslint .",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "npm run test:unit:coverage && npm run test:integration && npm run test:component",
+    "test:health": "mocha \"./tests/healthCheck/*spec.js\" --timeout 15000",
+    "test:watch": "mocha \"./@(src|scripts)/**/*spec.js\" --watch --timeout 15000 --bail",
+    "test:unit": "cross-env stage=dev mocha \"./@(src|scripts)/**/*spec.js\" --timeout 15000",
+    "test:unit:coverage": "cross-env stage=dev nyc mocha \"./@(src|scripts)/**/*spec.js\" --timeout 15000",
+    "test:unit:report": "cross-env stage=dev mocha \"./@(src|scripts)/**/*spec.js\" --timeout 15000 --reporter mocha-junit-reporter --reporter-options testCaseSwitchClassnameAndName=true,mochaFile=./test-reports/unit.xml",
+    "test:integration": "cross-env stage=ci mocha \"./tests/integration/*spec.js\" --timeout 30000",
+    "test:integration:report": "cross-env stage=ci mocha \"./tests/integration/*spec.js\" --timeout 30000 --reporter mocha-junit-reporter --reporter-options testCaseSwitchClassnameAndName=true,mochaFile=./test-reports/integration.xml",
+    "test:component": "cross-env stage=ci mocha \"./tests/component/**/*spec.js\" --timeout 30000",
+    "test:component:report": "cross-env stage=ci mocha \"./tests/component/**/*spec.js\" --timeout 30000 --reporter mocha-junit-reporter --reporter-options testCaseSwitchClassnameAndName=true,mochaFile=./test-reports/component.xml",
+    "test:smoke": "bash ./scripts/smoke/smoke.sh",
+    "test:smoke:report": "node ./scripts/smoke/generateReport.js",
+    "package": "serverless deploy -n",
+    "package:queue": "cd serverless_queue && serverless deploy -n",
+    "deploy": "serverless deploy",
+    "deploy:queue": "cd serverless_queue && serverless deploy",
+    "deploy-index": "node ./scripts/deploy-index/deploy-index.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run audit:check && npm run lint && npm run test"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "*.{js,json,md, yml}": [
+        "prettier-eslint --write",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "package-lock.json",
+      "package.json"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/accordogroup/search-index-service.git"
+  },
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/accordogroup/search-index-service#readme",
+  "dependencies": {
+    "@accordo-feed/healthcheck-helper": "git+ssh://git@bitbucket.org/accordogroup/healthcheck-helper.git#1.7.1",
+    "@accordo-feed/webapi-helper": "git+ssh://git@bitbucket.org/accordogroup/webapi-helper.git#8.0.0",
+    "@azure/cosmos": "2.1.5",
+    "@elastic/elasticsearch": "7.1.0",
+    "aws-sdk": "2.458.0",
+    "glob": "7.1.4",
+    "joi": "14.3.1",
+    "minimist": "1.2.0",
+    "moment": "2.24.0",
+    "ramda": "0.26.1",
+    "request": "2.88.0",
+    "request-promise-native": "1.0.7",
+    "serverless-plugin-lambda-dead-letter": "1.2.1",
+    "ssm-helper": "git+ssh://git@bitbucket.org/accordogroup/ssm-helper.git#build-29",
+    "uuid": "3.3.2"
+  },
+  "devDependencies": {
+    "chai": "4.2.0",
+    "cheerio": "1.0.0-rc.3",
+    "cross-env": "5.2.0",
+    "cucumber": "5.1.0",
+    "cucumber-html-reporter": "5.0.0",
+    "cucumber-pretty": "1.5.0",
+    "cucumberjs-junitxml": "1.0.0",
+    "eslint": "5.16.0",
+    "eslint-config-airbnb": "17.1.0",
+    "eslint-config-prettier": "4.3.0",
+    "eslint-plugin-cucumber": "1.2.0",
+    "eslint-plugin-import": "2.17.2",
+    "eslint-plugin-prettier": "3.1.0",
+    "husky": "2.3.0",
+    "lambda-local": "1.6.3",
+    "lint-staged": "8.1.7",
+    "mocha": "6.1.4",
+    "mocha-junit-reporter": "1.22.0",
+    "npm-audit-resolver": "1.5.0",
+    "nyc": "14.1.1",
+    "prettier-eslint-cli": "4.7.1",
+    "serverless": "1.44.1",
+    "serverless-domain-manager": "3.2.2",
+    "serverless-plugin-include-dependencies": "3.2.1",
+    "sinon": "7.3.2"
+  },
+  "engines": {
+    "node": "8.11.1"
+  },
+  "distIncludes": [
+    "./src",
+    "./bin",
+    "./node_modules",
+    "./package.json"
+  ]
+}
